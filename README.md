@@ -4,9 +4,9 @@
 
 # RIWS - Práctica 1
 
-> - Alumno 1: **Daniel Núñez Sánchez** (daniel.nunezs@udc.es)
-> &nbsp;
-> - Alumno 2: **Rodrigo Dopazo Iglesias** (r.dopazo@udc.es)
+- Alumno 1: **Daniel Núñez Sánchez** (daniel.nunezs@udc.es)
+- Alumno 2: **Rodrigo Dopazo Iglesias** (r.dopazo@udc.es)
+
 
 <br>
 ## Execución do proxecto Java
