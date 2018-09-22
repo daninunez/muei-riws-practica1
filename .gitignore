@@ -1,0 +1,10 @@
+# Target directories.
+target/
+
+# Eclipse configuration.
+*.classpath
+*.project
+*.settings/
+ 
+# Logs.
+*.log
