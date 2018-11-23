@@ -1,0 +1,220 @@
+<!-- RIWS 2018 - PRACTICA -->
+<!-- Daniel Nuñez Sanchez (daniel.nunezs@udc.es) -->
+<!-- Rodrigo Dopazo Iglesias (r.dopazo@udc.es) -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Daniel Núñez Sánchez, Rodrigo Dopazo Iglesias">
+    <meta name="description" content="RIWS 2018 - Práctica">
+    <meta name="keywords" content="HTML,CSS,JavaScript,HTML5,Practica">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Práctica RIWS 2018</title>
+
+    <link rel="shortcut icon" href="./resources/favicon.ico" type="image/x-icon">
+
+    <!-- jQuery UI + Slider Range -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <style>
+        /* ESTILO BARRA DESLIZANTE DE RANGOS */
+        .ui-slider { 
+            height: 37px;
+            width: 100%;
+        }
+
+        /* ESTILO PALANCAS DE LA BARRA DESLIZANTE DE RANGOS */
+        .ui-slider .ui-slider-handle {
+            margin-top: 4px;
+            height: 37px;
+            width: 20px;
+        }
+    </style>
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+    
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
+    <!-- Estilos propios -->
+    <link rel="stylesheet" href="./css/style.css">
+
+</head>
+<body>
+
+    <div class="container">
+
+        <header>        
+            <nav class="navbar navbar-expand navbar-dark bg-dark rounded" id="navbar-main">
+                <a class="navbar-brand navbar-brand-lg" href="./index.html">
+                    <img src="./resources/logo_vademecum.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                    <span>Práctica RIWS 2018</span>                
+                </a>
+                <span class="navbar-text"><a href="https://www.vademecum.es/medicamentos-a_1" target="_blank">Página información original:&nbsp;&nbsp;Vademecum</a></span>
+            </nav>
+        </header>
+
+        <main>
+            <section>
+
+                <!-- FILTROS -->
+                <div class="card" id="card-filtros">
+                    <h4 class="card-header"><i class="fas fa-filter"></i>Filtros</h4>
+                    <div class="card-body">
+                        <div class="card-text">
+
+                            <!-- SE USA JQUERY AJAX, NO ESTOS ATRIBUTOS DEL <form> -->
+                            <form action="./index.html" method="get" id="search-form">
+                                <div class="form-row" id="form-row-buscador">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <label class="input-group-text" for="input-search-keywords"><i class="fas fa-search"></i></label>
+                                        </div>
+                                        <input type="text" name="keywords" class="form-control col-8" id="input-search-keywords" placeholder="Buscar por palabras clave..." autofocus>
+                                        <button type="submit" class="btn btn-primary" id="btn-search-form" form="search-form">Realizar búsqueda</button> 
+                                        
+                                        <div class="col-3 offset-1" style="margin-right: -10px">
+                                            <select class="custom-select" id="select-show-results">
+                                                <option value="10" selected>Mostrar 10 resultados</option>
+                                                <option value="20">Mostrar 20 resultados</option>
+                                                <option value="50">Mostrar 50 resultados</option>
+                                                <option value="100">Mostrar 100 resultados</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <h5>Búsqueda avanzada</h5>
+
+                                <div class="row" style="margin-top: 20px">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="input-nombre-farmaco">Nombre del fármaco:</label>
+                                            <input type="text" id="input-nombre-farmaco" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <div style="display: inline">
+                                                <label style="display: inline-flex">Rango de precios de venta al público: <input type="text" id="amount" readonly style="margin-left: 10px; border:0; font-weight: bold;"></label>
+                                            </div>
+                                            
+                                            <!-- Slider Range -->
+                                            <div id="slider-range"></div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label for="input-principio-activo">Principio Activo (PA):</label>
+                                        <div class="form-inline">
+                                            <select class="custom-select mr-2" id="select-principio-activo" style="width: 30%">
+                                                <option value="same">Igual a</option>
+                                                <option value="different">Diferente de</option>
+                                            </select>
+                                            <input type="text" id="input-principio-activo" class="form-control" style="width: 68%">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="input-excipiente">Excipiente (EXC):</label>
+                                        <div class="form-inline">
+                                            <select class="custom-select mr-2" id="select-excipiente" style="width: 30%">
+                                                <option value="same">Igual a</option>
+                                                <option value="different">Diferente de</option>
+                                            </select>
+                                            <input type="text" id="input-excipiente" class="form-control" style="width: 68%">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <br>
+                                <label>Ocultar medicamentos con alertas por composición de:</label>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="checkbox-alertascomp-lactancia">
+                                            <label class="custom-control-label" for="checkbox-alertascomp-lactancia">Lactancia</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="checkbox-alertascomp-embarazo">
+                                            <label class="custom-control-label" for="checkbox-alertascomp-embarazo">Embarazo</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="checkbox-alertascomp-fotosensibilidad">
+                                            <label class="custom-control-label" for="checkbox-alertascomp-fotosensibilidad">Fotosensibilidad</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="checkbox-alertascomp-conduccion">
+                                            <label class="custom-control-label" for="checkbox-alertascomp-conduccion">Conducción de vehículos</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>                    
+
+                <!-- Mensaje resultado de la peticion AJAX -->
+                <div role="alert" id="mensaje-resultado-busqueda"></div>
+
+                <!-- Mensaje informacion estadistica -->
+                <div role="alert" id="mensaje-informacion-estadistica"></div>
+
+                <!-- RESULTADO DE LA BUSQUEDA DE FARMACOS -->
+                <div class="row" id="lista-farmacos"></div>
+
+            </section>
+        </main>
+
+        <footer class="page-footer font-small blue footer-copyright text-center">
+            <b>© 2018 RIWS</b> - <a href="mailto:daniel.nunezs@udc.es">Daniel Núñez Sánchez (daniel.nunezs@udc.es)</a> - <a href="mailto:r.dopazo@udc.es">Rodrigo Dopazo Iglesias (r.dopazo@udc.es)</a>
+        </footer>
+
+    </div>
+
+    <!-- jQuery + Slider Range -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            $("#slider-range").slider({
+                range: true,
+                min: 0,
+                max: 500,
+                values: [0, 500],
+                slide: function (event, ui) {
+                    var max = ui.values[1];
+
+                    if (ui.values[1] == 500) {
+                        max = "-"
+                    }
+                    $("#amount").val("Desde " + ui.values[0] + "€ hasta " + max + " €");
+                }
+            });
+            $("#amount").val("Desde " + $("#slider-range").slider("values", 0) + "€ hasta - €");
+        });
+    </script>
+
+    <!-- Bootstrap -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    
+    <!-- Scripts propios -->
+    <script src="./js/script.js"></script>
+
+</body>
+</html>
