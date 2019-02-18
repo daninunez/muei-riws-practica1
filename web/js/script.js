@@ -194,8 +194,6 @@ function procesarRespuestaExitosa(responseData) {
     } else {
         mensajeResultadoBusqueda.className = "alert alert-success col-9";
 
-
-        // ******************** REVISAR ONDE E COMO POÑELO ****************
         let minEnvasePrecio = responseData.aggregations.min_public_price.value.toFixed(2);
         let maxEnvasePrecio = responseData.aggregations.max_public_price.value.toFixed(2);
         let avgEnvasePrecio = responseData.aggregations.avg_public_price.value.toFixed(2);
@@ -264,11 +262,8 @@ function procesarRespuestaExitosa(responseData) {
                 htmlCompositionAlerts += `</ul>`;
             }
 
-
-            // ******************************BORRAR ** ESTES NON FAN FALTA ???? NON MOSTRALOS NA PAXINA WEB ???? **********************
             let numCompositionAlerts = farmaco._source.numCompositionAlerts;
             let numContainers = farmaco._source.numContainers;
-
 
             // Envases
             let listaContainers = farmaco._source.containers;
