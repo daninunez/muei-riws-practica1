@@ -10,7 +10,7 @@
 
 ## Guía para probar la práctica de manera rápida
 
-##### Para probar esta práctica de manera rápida, sin tener que esperar el tiempo de crawlear y recopilar la información del dominio de Vademecum (en nuestro caso, para recopilar todos los fármacos que son casi 15000, ha tardado en procesar todas las páginas sobre 1 hora y 20 minutos), se deben realizar los siguientes pasos:
+#### Para probar esta práctica de manera rápida, sin tener que esperar el tiempo de crawlear y recopilar la información del dominio de Vademecum (en nuestro caso, para recopilar todos los fármacos que son casi 15000, ha tardado en procesar todas las páginas sobre 1 hora y 20 minutos), se deben realizar los siguientes pasos:
 
 
 1. Asegurarse de que está habilitada la configuración de ElasticSearch para permitir el CORS - Control de acceso HTTP (ver la nota [*] del apartado 3.4.). Si no se modifica, el servidor no permitirá las peticiones AJAX realizadas desde el navegador web. 
